@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Role</title>
+  </head>
+  <body>
+    <h1>New Role</h1>
+    <form
+      action="#"
+      th:action="@{/roles/guardar}"
+      th:object="${rol}"
+      method="post"
+    >
+      <input type="hidden" th:field="*{id}" id="idRoles" />
+      <label for="roles">Role:</label>
+      <input type="text" th:field="*{roles}" id="roles" />
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Lista de Productos</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lista de Productos</h1>
+      <a th:href="@{/productos/nuevo}" class="btn btn-primary"
+        >Nuevo Producto</a
+      >
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Descuento</th>
+            <th>Categorías</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="producto : ${productos}">
+            <td th:text="${producto.id}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.descripcion}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td>
+              <img th:src="${producto.imagen}" width="100" height="100" />
+            </td>
+            <td th:text="${producto.descuento}"></td>
+            <td>
+              <span
+                th:each="categoria : ${producto.categorias}"
+                th:text="${categoria.nombre} + ' '"
+              ></span>
+            </td>
+            <td>
+              <a
+                th:href="@{/productos/{id}/editar(id=${producto.id})}"
+                class="btn btn-primary"
+                >Editar</a
+              >
+              <a
+                th:href="@{/productos/{id}/eliminar(id=${producto.id})}"
+                class="btn btn-danger"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
