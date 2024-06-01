@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.delicias.models.Producto;
 import com.example.delicias.service.CategoriaService;
@@ -67,29 +66,29 @@ public class ProductoController {
         return "redirect:/productos/listarTodo";
     }
 
-    @GetMapping("/{id}/asignar-categoria")
-    public String mostrarFormularioAsignarCategoria(@PathVariable Long id, Model model) {
-        model.addAttribute("producto", productoService.obtenerProductoPorId(id));
-        model.addAttribute("categorias", categoriaService.obtenerTodasLasCategorias());
-        return "productos/asignar-categoria";
-    }
+    // @GetMapping("/{id}/asignar-categoria")
+    // public String mostrarFormularioAsignarCategoria(@PathVariable Long id, Model model) {
+    //     model.addAttribute("producto", productoService.obtenerProductoPorId(id));
+    //     model.addAttribute("categorias", categoriaService.obtenerTodasLasCategorias());
+    //     return "productos/asignar-categoria";
+    // }
 
-    @PostMapping("/{id}/asignar-categoria")
-    public String asignarCategoria(@PathVariable Long id, @RequestParam Long categoriaId) {
-        productoService.asignarCategoria(id, categoriaId);
-        return "redirect:/productos/" + id + "/editar";
-    }
+    // @PostMapping("/{id}/asignar-categoria")
+    // public String asignarCategoria(@PathVariable Long id, @RequestParam Long categoriaId) {
+    //     productoService.asignarCategoria(id, categoriaId);
+    //     return "redirect:/productos/" + id + "/editar";
+    // }
 
-    @GetMapping("/{id}/asignar-usuario")
-    public String mostrarFormularioAsignarUsuario(@PathVariable Long id, Model model) {
-        model.addAttribute("producto", productoService.obtenerProductoPorId(id));
-        model.addAttribute("usuarios", usuarioService.obtenerTodosLosUsuarios());
-        return "productos/asignar-usuario";
-    }
+    // @GetMapping("/{id}/asignar-usuario")
+    // public String mostrarFormularioAsignarUsuario(@PathVariable Long id, Model model) {
+    //     model.addAttribute("producto", productoService.obtenerProductoPorId(id));
+    //     model.addAttribute("usuarios", usuarioService.obtenerTodosLosUsuarios());
+    //     return "productos/asignar-usuario";
+    // }
 
-    @PostMapping("/{id}/asignar-usuario")
-    public String asignarUsuario(@PathVariable Long id, @RequestParam Long usuarioId) {
-        productoService.asignarUsuario(id, usuarioId);
-        return "redirect:/productos/" + id + "/editar";
-    }
+    // @PostMapping("/{id}/asignar-usuario")
+    // public String asignarUsuario(@PathVariable Long id, @RequestParam Long usuarioId) {
+    //     productoService.asignarUsuario(id, usuarioId);
+    //     return "redirect:/productos/" + id + "/editar";
+    // }
 }

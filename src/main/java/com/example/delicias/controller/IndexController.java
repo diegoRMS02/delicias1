@@ -8,6 +8,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndexPage() {
-        return "index"; // Devuelve el nombre de la plantilla Thymeleaf (sin la extensión .html)
+        return "index"; // Devuelve el index
     }
 }

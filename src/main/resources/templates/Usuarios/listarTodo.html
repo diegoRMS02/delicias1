@@ -30,6 +30,11 @@
             <td th:text="${usuario.celular}"></td>
             <td th:text="${usuario.correo}"></td>
             <td>
+              <span th:each="roles : ${usuario.rol}" th:text="${roles.roles}"
+                >Rol</span
+              >
+            </td>
+            <td>
               <a
                 th:href="@{/usuarios/{id}/editar(id=${usuario.id})}"
                 class="btn btn-primary"
