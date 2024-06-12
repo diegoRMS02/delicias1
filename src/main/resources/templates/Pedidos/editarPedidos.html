@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Editar Pedido</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Editar Pedido</h1>
+    <form
+      th:action="@{/pedidos/actualizar}"
+      th:object="${pedido}"
+      method="post"
+    >
+      <input type="hidden" th:field="*{id}" />
+      <!-- Campo oculto para el ID del pedido -->
+      <div>
+        <label for="usuario">Usuario:</label>
+        <select id="usuario" name="usuarioId">
+          <option
+            th:each="usuario : ${usuarios}"
+            th:value="${usuario.id}"
+            th:selected="${usuario.id eq pedido.usuario.id}"
+            th:text="${usuario.nombre}"
+          ></option>
+        </select>
+      </div>
+      <div>
+        <label for="producto">Producto:</label>
+        <select id="producto" name="productoId">
+          <option
+            th:each="producto : ${productos}"
+            th:value="${producto.id}"
+            th:selected="${producto.id eq pedido.producto.id}"
+            th:text="${producto.nombre}"
+          ></option>
+        </select>
+      </div>
+      <div>
+        <label for="fechaPedido">Fecha Pedido:</label>
+        <input type="date" id="fechaPedido" th:field="*{fechaPedido}" />
+      </div>
+      <div>
+        <label for="direccionEntrega">Dirección Entrega:</label>
+        <input
+          type="text"
+          id="direccionEntrega"
+          th:field="*{direccionEntrega}"
+        />
+      </div>
+      <div>
+        <label for="estadoProducto">Estado Producto:</label>
+        <input type="text" id="estadoProducto" th:field="*{estadoProducto}" />
+      </div>
+      <div>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" th:field="*{cantidad}" />
+      </div>
+      <div>
+        <label for="precioUnitario">Precio Unitario:</label>
+        <input
+          type="number"
+          step="0.01"
+          id="precioUnitario"
+          th:field="*{precioUnitario}"
+        />
+      </div>
+      <div>
+        <button type="submit">Guardar Cambios</button>
+      </div>
+    </form>
+    <a th:href="@{/pedidos}">Volver a la lista de pedidos</a>
+  </body>
+</html>

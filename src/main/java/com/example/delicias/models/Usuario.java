@@ -3,6 +3,7 @@ package com.example.delicias.models;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -59,5 +60,9 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "id_roles")
     )
     private Set<Roles> rol = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedidos> pedidos;
 
 }

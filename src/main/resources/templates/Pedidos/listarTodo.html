@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <h1>Lista de Pedidos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Producto</th>
+          <th>Fecha Pedido</th>
+          <th>Dirección Entrega</th>
+          <th>Estado Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pedido : ${pedidos}">
+          <td th:text="${pedido.id}"></td>
+          <td th:text="${pedido.usuario.nombre}"></td>
+          <td th:text="${pedido.producto.nombre}"></td>
+          <td th:text="${#dates.format(pedido.fechaPedido, 'yyyy-MM-dd')}"></td>
+          <td th:text="${pedido.direccionEntrega}"></td>
+          <td th:text="${pedido.estadoProducto}"></td>
+          <td th:text="${pedido.cantidad}"></td>
+          <td th:text="${pedido.precioUnitario}"></td>
+          <td>
+            <a th:href="@{/pedidos/{id}/editar(id=${pedido.id})}">Editar</a>
+            <form
+              th:action="@{/pedidos/eliminar/{id}(id=${pedido.id})}"
+              method="post"
+            >
+              <button type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/pedidos/nuevo}">Crear Nuevo Pedido</a>
+  </body>
+</html>

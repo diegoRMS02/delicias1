@@ -2,6 +2,7 @@ package com.example.delicias.models;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,4 +54,9 @@ public class Producto {
     @JoinColumn(name = "id_usuario_producto")
     private Usuario usuario;
 
+
+    @OneToMany(mappedBy = "producto")
+    private List<Pedidos> pedidos;
+
+    
 }
