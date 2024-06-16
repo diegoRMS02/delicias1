@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -51,7 +50,7 @@ public class Producto {
         joinColumns = @JoinColumn(name = "id_producto"),
         inverseJoinColumns = @JoinColumn(name = "id_categoria")
     )
-    @JsonBackReference
+    @JsonIgnore
     private Set<Categoria> categorias = new HashSet<>();
 
     @ManyToOne
