@@ -20,29 +20,34 @@ import lombok.Setter;
 @Table(name="pedidos")
 public class Pedidos {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_pedido")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     private Long id;
 
-    @Column(name="fecha_pedido")
+    @Column(name = "fecha_pedido")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaPedido;
-    @Column(name="direcion_entrega")
-    private String direccionEntrega;
-    @Column(name="estado_producto")
-    private String estadoProducto;
-    @Column(name="cantidad")
-    private Integer cantidad;
-    @Column(name="precio_unitario")
-    private Integer precioUnitario;     
 
+    @Column(name = "direcion_entrega")
+    private String direccionEntrega;
+
+    @Column(name = "estado_producto")
+    private String estadoProducto;
+
+    @Column(name = "cantidad")
+    private Integer cantidad;
+
+    @Column(name = "precio_unitario")
+    private Integer  precioUnitario;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
+    //@JsonIgnore // Evita la recursión infinita al serializar
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
+    //@JsonIgnore // Evita la recursión infinita al serializar
     private Producto producto;
 
     public Usuario getUsuario() {

@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,42 +24,42 @@ import lombok.Setter;
 @Entity
 @Getter @Setter
 public class Producto {
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_producto")
+    @Column(name = "id_producto")
     private Long id;
 
-    @Column(name="nombre_producto")
+    @Column(name = "nombre_producto")
     private String nombre;
 
-    @Column(name="descripcion_producto")
+    @Column(name = "descripcion_producto")
     private String descripcion;
 
-    @Column(name="precio_producto")
+    @Column(name = "precio_producto")
     private BigDecimal precio;
 
-    @Column(name="imagen_producto")
+    @Column(name = "imagen_producto")
     private String imagen;
 
-    @Column(name="descuento_producto")
+    @Column(name = "descuento_producto")
     private Integer descuento;
+
     @ManyToMany
     @JoinTable(
         name = "producto_categoria",
         joinColumns = @JoinColumn(name = "id_producto"),
         inverseJoinColumns = @JoinColumn(name = "id_categoria")
     )
+    @JsonBackReference
     private Set<Categoria> categorias = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "id_usuario_producto")
+    @JsonIgnore// Ignorar la propiedad productos en Usuario para evitar recursión infinita
     private Usuario usuario;
 
-
     @OneToMany(mappedBy = "producto")
+    @JsonIgnore// Ignorar la propiedad producto en Pedidos para evitar recursión infinita
     private List<Pedidos> pedidos;
-
-    
 }

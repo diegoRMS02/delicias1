@@ -2,6 +2,7 @@ package com.example.delicias.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,13 @@ public class PedidosService {
         return pedidosRepository.findAll();
     }
 
-    public Pedidos findById(Long id) {
-        return pedidosRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
+    public Optional<Pedidos> findById(Long id) {
+        return pedidosRepository.findById(id);
+               
     }
 
     public Pedidos save(Pedidos pedido) {
+        // Aquí podrías implementar lógica adicional antes de guardar
         return pedidosRepository.save(pedido);
     }
 

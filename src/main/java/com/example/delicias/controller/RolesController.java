@@ -1,5 +1,7 @@
 package com.example.delicias.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,17 +44,17 @@ public class RolesController {
 
     @GetMapping("/{id}/editar")
     public String editRole(@PathVariable Long id, Model model) {
-        Roles rol = rolesService.getRoleById(id);
+        Optional<Roles> rol = rolesService.getRoleById(id);
         model.addAttribute("rol", rol);
         return "roles/editarRol";
     }
-    @PostMapping("/actualizar")
-    public String updateRole(@RequestParam("id") Long id, @RequestParam("roles") String roles) {
-        Roles rol = rolesService.getRoleById(id);
-        rol.setRoles(roles);
-        rolesService.actualizarRol(rol);
-        return "redirect:/roles/listarTodo";     
-    }
+    // @PostMapping("/actualizar")
+    // public String updateRole(@RequestParam("id") Long id, @RequestParam("roles") String roles) {
+    //     Roles rol = rolesService.getRoleById(id);
+    //     rol.setRoles(roles);
+    //     rolesService.actualizarRol(rol);
+    //     return "redirect:/roles/listarTodo";     
+    // }
 
 
     @GetMapping("/{id}/eliminar")

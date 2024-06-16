@@ -3,6 +3,8 @@ package com.example.delicias.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,7 @@ public class Categoria {
     private Long id;
     @Column(name="tipo_categoria")
     private String nombre;
-
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private Set<Producto> productos = new HashSet<>();
 }

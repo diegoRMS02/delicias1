@@ -8,6 +8,8 @@ import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,6 +53,7 @@ public class Usuario {
 
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore 
     private Set<Producto> productos = new HashSet<>(); 
       
     @ManyToMany
@@ -59,10 +62,12 @@ public class Usuario {
         joinColumns = @JoinColumn(name = "id_usuario"),
         inverseJoinColumns = @JoinColumn(name = "id_roles")
     )
+    @JsonIgnore 
     private Set<Roles> rol = new HashSet<>();
 
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore 
     private List<Pedidos> pedidos;
 
 }

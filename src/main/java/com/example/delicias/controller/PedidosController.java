@@ -1,6 +1,7 @@
 package com.example.delicias.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,7 @@ public class PedidosController {
 
     @GetMapping("/{id}/editar")
     public String mostrarFormularioEditarPedido(@PathVariable Long id, Model model) {
-        Pedidos pedido = pedidosService.findById(id);
+        Optional<Pedidos> pedido = pedidosService.findById(id);
         List<Producto> productos = productoService.obtenerTodosLosProductos();
         List<Usuario> usuarios = usuarioService.obtenerTodosLosUsuarios();
         model.addAttribute("pedido", pedido);

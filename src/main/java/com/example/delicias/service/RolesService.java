@@ -1,6 +1,7 @@
 package com.example.delicias.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,12 @@ public class RolesService {
         return rolesRepository.findAll();
     }
 
-    public void saveRole(Roles rol) {
-        rolesRepository.save(rol);
+    public Roles saveRole(Roles rol) {
+        return rolesRepository.save(rol);
     }
 
-    public Roles getRoleById(Long id) {
-        return rolesRepository.findById(id).orElse(null);
+    public Optional<Roles> getRoleById(Long id) {
+        return rolesRepository.findById(id);
     }
     public Roles actualizarRol(Roles rol) {
         return rolesRepository.save(rol);
